@@ -1,0 +1,139 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="Project.Views.RestaurantPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:behaviors="clr-namespace:Project.Behaviors"
+    xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
+    xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+    xmlns:controls="clr-namespace:Project.Controls"
+    xmlns:syncEffectsView="clr-namespace:Syncfusion.XForms.EffectsView;assembly=Syncfusion.Core.XForms"
+    xmlns:template="clr-namespace:Project.Views.Templates"
+    xmlns:viewModel="clr-namespace:Project.ViewModels"
+    x:Name="restaurantPage"
+    BackgroundColor="{DynamicResource Gray-Bg}"
+    NavigationPage.HasNavigationBar="False">
+
+    <ContentPage.BindingContext>
+        <viewModel:RestaurantPageViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+
+        <Grid RowDefinitions="Auto, Auto, *" RowSpacing="0">
+
+            <StackLayout
+                x:Name="TitleView"
+                Grid.Row="0"
+                Padding="8"
+                BackgroundColor="{DynamicResource Gray-Bg}"
+                HorizontalOptions="FillAndExpand"
+                Orientation="Horizontal"
+                Spacing="0">
+
+                <StackLayout
+                    x:Name="TitleLayout"
+                    HorizontalOptions="FillAndExpand"
+                    IsVisible="True"
+                    Orientation="Horizontal"
+                    Spacing="0"
+                    VerticalOptions="FillAndExpand">
+
+                    <!--  Back button command  -->
+                    <buttons:SfButton
+                        x:Name="backButton"
+                        Command="{Binding BackButtonCommand}"
+                        CommandParameter="{x:Reference backButton}"
+                        Style="{StaticResource IconButtonStyle}"
+                        Text="{StaticResource Back}" />
+
+                    <!--  Restaurant page Title  -->
+                    <Label
+                        Margin="16,0"
+                        FontFamily="Montserrat-Medium"
+                        HorizontalOptions="FillAndExpand"
+                        Style="{StaticResource TitleLabelStyle}"
+                        Text="Restaurants"
+                        VerticalOptions="Center"
+                        VerticalTextAlignment="Center" />
+
+                </StackLayout>
+
+                <StackLayout
+                    x:Name="Search"
+                    HorizontalOptions="EndAndExpand"
+                    IsVisible="False"
+                    Orientation="Horizontal"
+                    Spacing="0">
+
+                    <!--  Back to title layout  -->
+                    <buttons:SfButton
+                        x:Name="BackToTitle"
+                        Style="{StaticResource IconButtonStyle}"
+                        Text="{StaticResource Back}">
+                        <buttons:SfButton.Behaviors>
+                            <behaviors:SearchBarAnimationBehavior AnimationType="shrink" />
+                        </buttons:SfButton.Behaviors>
+                    </buttons:SfButton>
+
+                    <!--  Rounded Search Entry  -->
+                    <border:SfBorder Style="{DynamicResource ThemeBorderStyle}">
+
+                        <controls:BorderlessEntry
+                            x:Name="SearchEntry"
+                            BindingContext="{x:Reference RestaurantList}"
+                            HorizontalOptions="FillAndExpand"
+                            Placeholder="Search here"
+                            Style="{StaticResource BorderlessEntryStyle}"
+                            Text="{Binding SearchText, Mode=TwoWay}" />
+                    </border:SfBorder>
+
+                </StackLayout>
+
+                <!--  Search Button  -->
+                <buttons:SfButton
+                    x:Name="SearchButton"
+                    IsVisible="True"
+                    Style="{StaticResource IconButtonStyle}"
+                    Text="{StaticResource Search}">
+                    <buttons:SfButton.Behaviors>
+                        <behaviors:SearchBarAnimationBehavior AnimationType="expand" />
+                    </buttons:SfButton.Behaviors>
+                </buttons:SfButton>
+
+            </StackLayout>
+
+            <!--  Separator  -->
+            <BoxView Grid.Row="1" Style="{StaticResource HorizontalSeparatorStyle}" />
+
+            <StackLayout Grid.Row="2" Spacing="0">
+
+                <controls:SearchableRestaurantPage
+                    x:Name="RestaurantList"
+                    Padding="0"
+                    AutoFitMode="Height"
+                    IsScrollBarVisible="false"
+                    ItemSpacing="0"
+                    ItemsSource="{Binding NavigationList}"
+                    SelectionBackgroundColor="Transparent"
+                    StickyFooterPosition="Body"
+                    VerticalOptions="FillAndExpand">
+
+                    <controls:SearchableRestaurantPage.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <syncEffectsView:SfEffectsView
+                                    RippleColor="{DynamicResource Gray-300}"
+                                    TouchDownEffects="Ripple"
+                                    TouchUpCommand="{Binding Path=BindingContext.ItemTappedCommand, Source={x:Reference restaurantPage}}"
+                                    TouchUpCommandParameter="{Binding}">
+                                    <template:RestaurantCardTemplate />
+                                </syncEffectsView:SfEffectsView>
+                            </ViewCell>
+                        </DataTemplate>
+                    </controls:SearchableRestaurantPage.ItemTemplate>
+                </controls:SearchableRestaurantPage>
+            </StackLayout>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,112 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Grid
+    x:Class="Project.Views.Templates.RecipeFromListTemplate"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:button="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+    xmlns:viewModel="clr-namespace:Project.ViewModels">
+
+    <Grid
+        BackgroundColor="{DynamicResource PlaceholderColor}"
+        ColumnSpacing="0"
+        RowDefinitions="200, 450"
+        RowSpacing="0">
+
+        <!--  Image of an item  -->
+        <Image
+            Aspect="AspectFill"
+            BackgroundColor="{DynamicResource Gray-200}"
+            HeightRequest="200"
+            Source="{Binding MealThumb}">
+        </Image>
+        <StackLayout
+            Grid.Row="1"
+            Padding="20"
+            HorizontalOptions="FillAndExpand"
+            Spacing="0"
+            VerticalOptions="FillAndExpand">
+
+            <!--  Name of an item  -->
+            <Label
+                HorizontalOptions="Start"
+                Style="{StaticResource TitleLabelStyle}"
+                Text="{Binding Name}" />
+
+            <!--  Description about an item  -->
+            <Label
+                Margin="0,4,0,0"
+                FontSize="12"
+                HorizontalOptions="Start"
+                HorizontalTextAlignment="Start"
+                LineHeight="{OnPlatform Android=1.25, Default=-1}"
+                Style="{StaticResource DescriptionLabelStyle}"
+                Text="{Binding Area}" />
+
+            <Label
+                Margin="0,30,0,10"
+                FontSize="18"
+                HorizontalOptions="Start"
+                HorizontalTextAlignment="Start"
+                Style="{StaticResource DescriptionLabelStyle}"
+                LineHeight="{OnPlatform Android=1.25, Default=-1}"
+               
+                Text="Ingredients:" />
+
+            <StackLayout
+                HorizontalOptions="FillAndExpand"
+                Orientation="Horizontal">
+
+                <!--  Average rating from the overall rating  -->
+                <Label
+                    Margin="0,0,4,0"
+                    FontFamily="FontIcons"
+                    FontSize="12"
+                    Text="★★★★★★★★★★★★★★"
+                    TextColor="{DynamicResource PrimaryColor}"
+                    VerticalOptions="Center"
+                    WidthRequest="16" />
+
+                <Label
+                    Margin="0,0,4,0"
+                    FontFamily="FontIcons"
+                    FontSize="12"
+                    Text="★★★★★★★★★★★★★★"
+                    TextColor="{DynamicResource PrimaryColor}"
+                    VerticalOptions="Center"
+                    WidthRequest="16" />
+
+                <!--  Ingredients list  -->
+                <FlexLayout JustifyContent="SpaceAround" Direction="Column"  BindableLayout.ItemsSource="{Binding Ingredients}">
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate>
+                            <Label
+                                       FontFamily="Montserrat-Regular"
+                                       FontSize="15"
+                                       LineHeight="{OnPlatform Android=1.0, Default=-1}"
+                                       TextColor="{DynamicResource Gray-700}"
+                                       Text="{Binding}"/>
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </FlexLayout>
+
+
+                <!--  Navigation icon  -->
+                <button:SfButton
+                    BackgroundColor="Transparent"
+                    Command="{Binding ItemTappedCommand}"
+                    CornerRadius="4"
+                    FontFamily="FontIcons"
+                    FontSize="14"
+                    HorizontalOptions="EndAndExpand"
+                    Text="{StaticResource ArrowRight}"
+                    TextColor="{DynamicResource Gray-600}"
+                    VerticalOptions="Center">
+                    <button:SfButton.BindingContext>
+                        <viewModel:RecipesListViewModel />
+                    </button:SfButton.BindingContext>
+                </button:SfButton>
+
+            </StackLayout>
+        </StackLayout>
+    </Grid>
+</Grid>

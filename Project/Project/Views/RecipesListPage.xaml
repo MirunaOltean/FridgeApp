@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="Project.Views.RecipesListPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
+    xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+    xmlns:controls="clr-namespace:Project.Controls"
+    xmlns:core="clr-namespace:Syncfusion.XForms.Core;assembly=Syncfusion.Core.XForms"
+    xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
+    xmlns:syncEffectsView="clr-namespace:Syncfusion.XForms.EffectsView;assembly=Syncfusion.Core.XForms"
+    xmlns:template="clr-namespace:Project.Views.Templates" 
+    xmlns:viewmodels="clr-namespace:Project.ViewModels" 
+    x:DataType="viewmodels:RecipesListViewModel"
+    x:Name="RecipesList"
+    BackgroundColor="{DynamicResource Gray-Bg}"
+    NavigationPage.HasNavigationBar="False">
+
+    <ContentPage.Content>
+
+        <Grid RowDefinitions="Auto, *">
+
+            <!--  Title View  -->
+            <controls:TitleView Title="Recipes" Grid.Row="0">
+                <controls:TitleView.LeadingView>
+                    <buttons:SfButton
+                        x:Name="backButton"
+                        Command="{Binding BindingContext.BackButtonCommand, Source={x:Reference meals}}"
+                        CommandParameter="{x:Reference backButton}"
+                        Style="{StaticResource IconButtonStyle}"
+                        Text="{StaticResource Back}" />
+                </controls:TitleView.LeadingView>
+            </controls:TitleView>
+
+            <Grid Grid.Row="1" Padding="{core:OnPlatformOrientationThickness Default='11,0', TabletPortrait='20,16,20,0', TabletLandscape='20,16,20,0', Desktop='20,24,20,0'}">
+
+                <listView:SfListView
+                    x:Name="meals"
+                    AutoFitMode="Height"
+                    IsScrollBarVisible="false"
+                    ItemSpacing="{core:OnPlatformOrientationThickness PhonePortrait='0,4,0,0',
+                                                                      PhoneLandscape='0,11,0,0',
+                                                                      Default='0,0,27,27'}"
+                    ItemsSource="{Binding RecipesList}"
+                    SelectionMode="Single"
+                    SelectionBackgroundColor="Transparent">
+                    <listView:SfListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <!--  View of each tile item  -->
+                                <controls:CustomShadowFrame
+                                    Margin="5,2,5,5"
+                                    Padding="0"
+                                    BackgroundColor="{DynamicResource GrayShadowColor}"
+                                    BorderColor="{DynamicResource GrayShadowColor}"
+                                    BorderWidth="1"
+                                    CornerRadius="4"
+                                    HasShadow="True"
+                                    HorizontalOptions="FillAndExpand"
+                                    Radius="4"
+                                    VerticalOptions="FillAndExpand">
+
+                                    <syncEffectsView:SfEffectsView
+                                        RippleColor="{DynamicResource Gray-300}"
+                                        
+                                        TouchDownEffects="Ripple"
+                                        SelectionColor="Aquamarine"
+                                        AnimationCompleted="OnEffectsViewAnimationCompleted">
+
+                                        <border:SfBorder
+                                            BorderColor="Transparent"
+                                            BorderWidth="0"
+                                            CornerRadius="4">
+                                            <template:RecipeFromListTemplate />
+                                        </border:SfBorder>
+                                    </syncEffectsView:SfEffectsView>
+
+                                </controls:CustomShadowFrame>
+                            </ViewCell>
+                        </DataTemplate>
+                    </listView:SfListView.ItemTemplate>
+
+                    <!--  Span count to specify in the different layouts  -->
+                    <listView:SfListView.LayoutManager>
+                        <listView:GridLayout SpanCount="{OnIdiom Phone=1, Tablet=2, Desktop=3}" />
+                    </listView:SfListView.LayoutManager>
+                </listView:SfListView>
+            </Grid>
+
+        </Grid>
+
+    </ContentPage.Content>
+</ContentPage>
