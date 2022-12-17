@@ -47,13 +47,13 @@
                         Style="{StaticResource IconButtonStyle}"
                         Text="{StaticResource Back}" />
 
-                    <!--  Restaurant page Title  -->
+                    <!--  Restaurant page Title  --> 
                     <Label
                         Margin="16,0"
                         FontFamily="Montserrat-Medium"
                         HorizontalOptions="FillAndExpand"
                         Style="{StaticResource TitleLabelStyle}"
-                        Text="Restaurants"
+                        Text="Nearby Supermarkets"
                         VerticalOptions="Center"
                         VerticalTextAlignment="Center" />
 

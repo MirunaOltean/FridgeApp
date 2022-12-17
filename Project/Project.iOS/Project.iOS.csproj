@@ -135,25 +135,25 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Syncfusion.Xamarin.Buttons">
-      <Version>20.3.0.59</Version>
+      <Version>20.3.0.61</Version>
     </PackageReference>
     <PackageReference Include="Syncfusion.Xamarin.Core">
-      <Version>20.3.0.59</Version>
+      <Version>20.3.0.61</Version>
     </PackageReference>
     <PackageReference Include="Syncfusion.Xamarin.SfComboBox">
-      <Version>20.3.0.59</Version>
+      <Version>20.3.0.61</Version>
     </PackageReference>
     <PackageReference Include="Syncfusion.Xamarin.SfGauge">
-      <Version>20.3.0.59</Version>
+      <Version>20.3.0.61</Version>
     </PackageReference>
     <PackageReference Include="Syncfusion.Xamarin.SfListView">
-      <Version>20.3.0.59</Version>
+      <Version>20.3.0.61</Version>
     </PackageReference>
     <PackageReference Include="Syncfusion.Xamarin.SfRating">
-      <Version>20.3.0.59</Version>
+      <Version>20.3.0.61</Version>
     </PackageReference>
-    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2196" />
-    <PackageReference Include="Xamarin.Essentials" Version="1.7.0" />
+    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2545" />
+    <PackageReference Include="Xamarin.Essentials" Version="1.7.4" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>

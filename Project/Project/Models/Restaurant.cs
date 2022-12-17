@@ -21,15 +21,7 @@ namespace Project.Models
         [DataMember(Name = "itemImage")]
         public string RestaurantImage
         {
-            get
-            {
-                return App.ImageServerPath + this.restaurantImage;
-            }
-
-            set
-            {
-                this.restaurantImage = value;
-            }
+            get;set;
         }
 
 
