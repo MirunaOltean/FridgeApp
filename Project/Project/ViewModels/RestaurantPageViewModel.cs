@@ -1,6 +1,7 @@
 ﻿using Project.Models;
 using System.Collections.ObjectModel;
 using System.Runtime.Serialization;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 
@@ -59,7 +60,20 @@ namespace Project.ViewModels
         /// <param name="selectedItem">Selected item from the list view.</param>
         private void NavigateToNextPage(object selectedItem)
         {
-            // Do something
+            Restaurant restaurant = (Restaurant)selectedItem;
+            if (Device.RuntimePlatform == Device.iOS)
+            {
+                 Launcher.OpenAsync("http://maps.apple.com/?q=" + restaurant.Description);
+            }
+            else if (Device.RuntimePlatform == Device.Android)
+            {
+                // open the maps app directly
+                Launcher.OpenAsync("geo:0,0?q=" + restaurant.Description);
+            }
+            else if (Device.RuntimePlatform == Device.UWP)
+            {
+                Launcher.OpenAsync("bingmaps:?where=" + restaurant.Description);
+            }
         }
 
         #endregion
