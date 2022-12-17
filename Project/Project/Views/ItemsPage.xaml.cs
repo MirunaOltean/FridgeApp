@@ -1,4 +1,5 @@
-﻿using Project.Models;
+﻿using DCVXamarin;
+using Project.Models;
 using Project.ViewModels;
 using Project.Views;
 using System;
@@ -15,13 +16,13 @@ namespace Project.Views
     public partial class ItemsPage : ContentPage
     {
         ItemsViewModel _viewModel;
-
         public ItemsPage()
         {
             InitializeComponent();
-
             BindingContext = _viewModel = new ItemsViewModel();
         }
+
+
 
         protected override void OnAppearing()
         {
