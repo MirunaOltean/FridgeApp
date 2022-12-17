@@ -26,7 +26,7 @@ namespace Project.DataService
         /// </summary>
         public RecipesListViewModel NavigationViewModel =>
             this.navigationViewModel ??
-            (this.navigationViewModel = PopulateData<RecipesListViewModel>("navigation.json"));
+            (this.navigationViewModel = PopulateData<RecipesListViewModel>("restaurants.json"));
 
         #endregion
 
