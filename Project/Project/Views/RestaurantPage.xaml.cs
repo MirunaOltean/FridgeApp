@@ -34,9 +34,8 @@ namespace Project.Views
         protected async void Restaurants()
         {
             var location = await Geolocation.GetLastKnownLocationAsync();
-            //await location.OpenMapsAsync();
             HttpClient client = new HttpClient();
-            HttpResponseMessage response = await client.GetAsync("https://maps.googleapis.com/maps/api/place/nearbysearch/json?keyword=supermarket&location="+location.Latitude.ToString()+","+location.Longitude.ToString()+"&radius=10000&type=supermarket&key=AIzaSyBEAy46w4BOQFGKmfDHnr9cBH1hB6sau4o");
+            HttpResponseMessage response = await client.GetAsync("https://maps.googleapis.com/maps/api/place/nearbysearch/json?&location="+location.Latitude.ToString()+","+location.Longitude.ToString()+"&radius=5000&type=supermarket&key=AIzaSyBEAy46w4BOQFGKmfDHnr9cBH1hB6sau4o");
             try
             {
                 response.EnsureSuccessStatusCode();
