@@ -21,14 +21,14 @@
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <StackLayout Padding="10" x:DataType="model:Item">
-                        <Label Text="{Binding Text}" 
-                            LineBreakMode="NoWrap" 
-                            Style="{DynamicResource ListItemTextStyle}" 
-                            FontSize="16" />
+                        <Image Source="{Binding Text}"  />
+                        <!--Style="{DynamicResource ListItemTextStyle}-->
                         <Label Text="{Binding Description}" 
                             LineBreakMode="NoWrap"
-                            Style="{DynamicResource ListItemDetailTextStyle}"
-                            FontSize="13" />
+                               FontSize="12" 
+                               HorizontalTextAlignment="Center"
+                               TextColor="Black"/>
+                            <!--Style="{DynamicResource ListItemDetailTextStyle}"-->
                         <StackLayout.GestureRecognizers>
                             <TapGestureRecognizer 
                                 NumberOfTapsRequired="1"
@@ -36,6 +36,7 @@
                                 CommandParameter="{Binding .}">
                             </TapGestureRecognizer>
                         </StackLayout.GestureRecognizers>
+                        <BoxView HeightRequest="1" Color="Black"></BoxView>
                     </StackLayout>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
