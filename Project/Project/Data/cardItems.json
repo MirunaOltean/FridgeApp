@@ -1,0 +1,24 @@
+{
+  "cardItems": [
+    {
+      "Category": "Calories Eaten",
+      "CategoryValue": "13,100",
+      "CategoryImage": "CaloriesEaten.svg"
+    },
+    {
+      "Category": "Heart Rate",
+      "CategoryValue": "87 BPM",
+      "CategoryImage": "HeartRate.svg"
+    },
+    {
+      "Category": "Water Consumed",
+      "CategoryValue": "38.6 L",
+      "categoryImage": "WaterConsumed.svg"
+    },
+    {
+      "Category": "Sleep Duration",
+      "CategoryValue": "7.3 H",
+      "CategoryImage": "SleepDuration.svg"
+    }
+  ]
+}

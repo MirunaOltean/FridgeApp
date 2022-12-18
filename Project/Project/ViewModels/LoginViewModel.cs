@@ -1,4 +1,6 @@
-﻿using Project.Validators;
+﻿using Project.DataService;
+using Project.Models;
+using Project.Validators;
 using Project.Validators.Rules;
 using Project.Views;
 using System;
@@ -13,6 +15,7 @@ namespace Project.ViewModels
         #region Fields
 
         private ValidatableObject<string> email;
+        private readonly SQLiteDataService _sqliteDataService;
 
         #endregion
 
@@ -23,75 +26,73 @@ namespace Project.ViewModels
         /// </summary>
         public ValidatableObject<string> Email
         {
-            get
-            {
-                return this.email;
-            }
-
+            get => email;
             set
             {
-                if (this.email == value)
+                if (email == value)
                 {
                     return;
                 }
 
-                this.SetProperty(ref this.email, value);
+                SetProperty(ref email, value);
             }
         }
         #endregion
 
         #region Constructor
 
-        /// <summary>
-        /// Initializes a new instance for the <see cref="LoginViewModel" /> class.
-        /// </summary>
         public LoginViewModel()
         {
-            this.InitializeProperties();
-            this.AddValidationRules();
+            _sqliteDataService = new SQLiteDataService();
+            InitializeProperties();
+            AddValidationRules();
         }
 
         #endregion
 
         #region Methods
 
-        /// <summary>
-        /// This method to validate the email
-        /// </summary>
-        /// <returns>returns bool value</returns>
         public bool IsEmailFieldValid()
         {
-            bool isEmailValid = this.Email.Validate();
+            bool isEmailValid = Email.Validate();
             return isEmailValid;
         }
 
-        /// <summary>
-        /// Initializing the properties.
-        /// </summary>
         private void InitializeProperties()
         {
-            this.Email = new ValidatableObject<string>();
+            Email = new ValidatableObject<string>();
         }
 
-        /// <summary>
-        /// This method contains the validation rules
-        /// </summary>
         private void AddValidationRules()
         {
-            this.Email.Validations.Add(new IsNotNullOrEmptyRule<string> { ValidationMessage = "Email Required" });
-            this.Email.Validations.Add(new IsValidEmailRule<string> { ValidationMessage = "Invalid Email" });
+            Email.Validations.Add(new IsNotNullOrEmptyRule<string> { ValidationMessage = "Email Required" });
+            Email.Validations.Add(new IsValidEmailRule<string> { ValidationMessage = "Invalid Email" });
         }
 
-        public async void OnLogInClicked(object obj)
+        public async void OnLogInClicked(object password)
         {
-            // Prefixing with `//` switches to a different navigation stack instead of pushing to the active one
-            await Shell.Current.GoToAsync($"//{nameof(DailyCaloriesReportPage)}");
+            ValidatableObject<string> Password = (ValidatableObject<string>)password;
+            Person person = _sqliteDataService.LogInCheck(Email.Value, Password.Value);
+            if (person != null )
+            {
+                await Shell.Current.GoToAsync($"//{nameof(HealthProfilePage)}?name={person.Id}");
+            }
+            else
+            {
+                Email.IsValid = false;
+                Password.IsValid = false;
+            }
         }
 
         public async void OnSignUpClicked(object obj)
         {
             // Prefixing with `//` switches to a different navigation stack instead of pushing to the active one
             await Shell.Current.GoToAsync($"//{nameof(SignUpPage)}");
+        }
+
+        public void AddPerson(Person person)
+        {
+            _sqliteDataService.AddPerson(person);
         }
 
         #endregion

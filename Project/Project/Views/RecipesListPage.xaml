@@ -12,7 +12,7 @@
     xmlns:template="clr-namespace:Project.Views.Templates" 
     xmlns:viewmodels="clr-namespace:Project.ViewModels" 
     x:DataType="viewmodels:RecipesListViewModel"
-    x:Name="RecipesList"
+    x:Name="RecipesList" Title="              **Recipes**" Padding="10"
     BackgroundColor="{DynamicResource Gray-Bg}"
     NavigationPage.HasNavigationBar="False">
 
@@ -20,19 +20,8 @@
 
         <Grid RowDefinitions="Auto, *">
 
-            <!--  Title View  -->
-            <controls:TitleView Title="Recipes" Grid.Row="0">
-                <controls:TitleView.LeadingView>
-                    <buttons:SfButton
-                        x:Name="backButton"
-                        Command="{Binding BindingContext.BackButtonCommand, Source={x:Reference meals}}"
-                        CommandParameter="{x:Reference backButton}"
-                        Style="{StaticResource IconButtonStyle}"
-                        Text="{StaticResource Back}" />
-                </controls:TitleView.LeadingView>
-            </controls:TitleView>
 
-            <Grid Grid.Row="1" Padding="{core:OnPlatformOrientationThickness Default='11,0', TabletPortrait='20,16,20,0', TabletLandscape='20,16,20,0', Desktop='20,24,20,0'}">
+                <Grid Grid.Row="1" Padding="{core:OnPlatformOrientationThickness Default='11,0', TabletPortrait='20,16,20,0', TabletLandscape='20,16,20,0', Desktop='20,24,20,0'}">
 
                 <listView:SfListView
                     x:Name="meals"

@@ -34,7 +34,7 @@ namespace Project.ViewModels
 
         #endregion
 
-        #region property
+        #region Public Properties
 
         /// <summary>
         /// Gets or sets the property that is bound with an entry that gets the password from user in the login page.
@@ -83,7 +83,7 @@ namespace Project.ViewModels
 
         #endregion
 
-        #region methods
+        #region Methods
 
         /// <summary>
         /// Check the password is null or empty
@@ -109,18 +109,18 @@ namespace Project.ViewModels
         /// </summary>
         private void AddValidationRules()
         {
-            this.Password.Validations.Add(new IsNotNullOrEmptyRule<string> { ValidationMessage = "Password Required" });
+            Password.Validations.Add(new IsNotNullOrEmptyRule<string> { ValidationMessage = "Password Required" });
         }
 
         /// <summary>
         /// Invoked when the Log In button is clicked.
         /// </summary>
         /// <param name="obj">The Object</param>
-        private void LoginClicked(object obj)
+        private void LoginClicked(object password)
         {
             if (this.AreFieldsValid())
             {
-                OnLogInClicked(obj);
+                OnLogInClicked(password);
             }
         }
 

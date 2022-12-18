@@ -4,6 +4,8 @@ using Android.App;
 using Android.Content.PM;
 using Android.Runtime;
 using Android.OS;
+using Android;
+using AndroidX.Core.App;
 
 namespace Project.Droid
 {
@@ -12,6 +14,13 @@ namespace Project.Droid
     {
         protected override void OnCreate(Bundle savedInstanceState)
         {
+            if (Build.VERSION.SdkInt >= BuildVersionCodes.M)
+            {
+                if (!(CheckPermissionGranted(Manifest.Permission.ReadExternalStorage) && !CheckPermissionGranted(Manifest.Permission.WriteExternalStorage)))
+                {
+                    RequestPermission();
+                }
+            }
             base.OnCreate(savedInstanceState);
 
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
@@ -24,6 +33,24 @@ namespace Project.Droid
             Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
 
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+        }
+
+        private void RequestPermission()
+        {
+            ActivityCompat.RequestPermissions(this, new string[] { Manifest.Permission.ReadExternalStorage, Manifest.Permission.WriteExternalStorage }, 0);
+        }
+
+        public bool CheckPermissionGranted(string Permissions)
+        {
+            // Check if the permission is already available.
+            if (ActivityCompat.CheckSelfPermission(this, Permissions) != Permission.Granted)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
     }
 }

@@ -21,15 +21,6 @@
             <StackLayout Spacing="0">
                 <!--  Title View  -->
                 <controls:TitleView Title="Details">
-                    <controls:TitleView.LeadingView>
-                        <buttons:SfButton
-                            x:Name="backButton"
-                            Command="{Binding BindingContext.BackButtonCommand, Source={x:Reference recipeDetailsPage}}"
-                            CommandParameter="{x:Reference backButton}"
-                            Style="{StaticResource IconButtonStyle}"
-                            Text="{StaticResource Back}" />
-                    </controls:TitleView.LeadingView>
-
                     <controls:TitleView.TrailingView>
                         <StackLayout Orientation="Horizontal">
                             <!--  Favourite button  -->
@@ -153,7 +144,7 @@
                             </BindableLayout.ItemTemplate>
                         </FlexLayout>
 
-                        <!--  Ingredients list  -->
+                        <!--  Measures list  -->
                         <FlexLayout Grid.Column="1" JustifyContent="SpaceAround" Direction="Column" BackgroundColor="BlanchedAlmond"  BindableLayout.ItemsSource="{Binding SelectedItem.Measures}">
                             <BindableLayout.ItemTemplate>
                                 <DataTemplate>
@@ -247,55 +238,6 @@
 
                 </StackLayout>
 
-                <StackLayout Padding="{OnIdiom Default='16'}" Orientation="Horizontal">
-
-                    <Label
-                        HorizontalOptions="StartAndExpand"
-                        Style="{StaticResource TitleLabelStyle}"
-                        Text="Reviews"
-                        VerticalOptions="Center" />
-
-                    <!--  See all review button  -->
-                    <buttons:SfButton
-                        x:Name="ShowButton"
-                        Padding="0"
-                        Command="{Binding LoadMoreCommand}"
-                        CommandParameter="{x:Reference ShowButton}"
-                        FontSize="{OnIdiom Default=12,
-                                           Desktop=14}"
-                        HorizontalOptions="End"
-                        Style="{StaticResource TransparentButtonStyle}"
-                        Text="SHOW LESS"
-                        VerticalOptions="Center" />
-
-                </StackLayout>
-
-                <StackLayout
-                    x:Name="StackLayout"
-                    BindableLayout.ItemsSource="{Binding Reviews}"
-                    Spacing="0">
-                    <BindableLayout.ItemTemplate>
-                        <DataTemplate>
-                            <StackLayout Spacing="0">
-
-                                <BoxView HeightRequest="{OnIdiom Default=1, Desktop=0}" Style="{StaticResource HorizontalSeparatorStyle}" />
-
-                                <template:ReviewTemplate Padding="16,16,16,0" ColumnSpacing="0" />
-
-                            </StackLayout>
-                        </DataTemplate>
-                    </BindableLayout.ItemTemplate>
-
-                </StackLayout>
-
-                <!--  See all reviews Button  -->
-                <buttons:SfButton
-                    Margin="50,8,50,24"
-                    Command="{Binding AddNewCommentCommand}"
-                    CommandParameter="{Binding .}"
-                    Style="{StaticResource GradientButtonStyle}"
-                    Text="COMMENT"
-                    WidthRequest="245" />
             </StackLayout>
 
         </ScrollView>
