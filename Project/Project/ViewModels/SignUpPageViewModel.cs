@@ -1,4 +1,5 @@
-﻿using Project.Validators;
+﻿using Project.Models;
+using Project.Validators;
 using Project.Validators.Rules;
 using Project.Views;
 using Xamarin.Forms;
@@ -29,8 +30,8 @@ namespace Project.ViewModels
         {
             this.InitializeProperties();
             this.AddValidationRules();
-            this.LoginCommand = new Command(this.LoginClicked);
-            this.SignUpCommand = new Command(this.SignUpClicked);
+            this.LoginCommand = new Command(LoginClicked);
+            this.SignUpCommand = new Command(SignUpClicked);
         }
         #endregion
 
@@ -120,29 +121,29 @@ namespace Project.ViewModels
         /// </summary>
         private void AddValidationRules()
         {
-            this.Name.Validations.Add(new IsNotNullOrEmptyRule<string> { ValidationMessage = "Name Required" });
-            this.Password.Item1.Validations.Add(new IsNotNullOrEmptyRule<string> { ValidationMessage = "Password Required" });
-            this.Password.Item2.Validations.Add(new IsNotNullOrEmptyRule<string> { ValidationMessage = "Re-enter Password" });
+            Name.Validations.Add(new IsNotNullOrEmptyRule<string> { ValidationMessage = "Name Required" });
+            Password.Item1.Validations.Add(new IsNotNullOrEmptyRule<string> { ValidationMessage = "Password Required" });
+            Password.Item2.Validations.Add(new IsNotNullOrEmptyRule<string> { ValidationMessage = "Re-enter Password" });
         }
 
-        /// <summary>
-        /// Invoked when the Log in button is clicked.
-        /// </summary>
-        /// <param name="obj">The Object</param>
-        private async void LoginClicked(object obj)
+
+        private async void LoginClicked()
         {
             await Shell.Current.GoToAsync($"//{nameof(LogInPage)}");
         }
 
-        /// <summary>
-        /// Invoked when the Sign Up button is clicked.
-        /// </summary>
-        /// <param name="obj">The Object</param>
-        private async void SignUpClicked(object obj)
+        private async void SignUpClicked()
         {
-            if (this.AreFieldsValid())
+            if (AreFieldsValid())
             {
-                await Shell.Current.GoToAsync($"//{nameof(DailyCaloriesReportPage)}");
+                Person person = new Person()
+                {
+                    ProfileName = Name.Value,
+                    Email = Email.Value,
+                    Password = Password.Item1.Value
+                };
+                AddPerson(person);
+                await Shell.Current.GoToAsync($"//{nameof(HealthProfilePage)}");
             }
         }
 

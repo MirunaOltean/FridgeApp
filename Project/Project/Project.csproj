@@ -7,8 +7,14 @@
 
   <ItemGroup>
     <None Remove="Data\article.json" />
+    <None Remove="Data\cardItems.json" />
     <None Remove="Data\meals.json" />
     <None Remove="Data\navigation.json" />
+    <None Remove="Data\profile.json" />
+    <None Remove="Images\CaloriesEaten.svg" />
+    <None Remove="Images\HeartRate.svg" />
+    <None Remove="Images\SleepDuration.svg" />
+    <None Remove="Images\WaterConsumed.svg" />
     <None Remove="Resources\Fonts\Montserrat-Bold.ttf" />
     <None Remove="Resources\Fonts\Montserrat-Medium.ttf" />
     <None Remove="Resources\Fonts\Montserrat-Regular.ttf" />
@@ -18,8 +24,14 @@
 
   <ItemGroup>
     <EmbeddedResource Include="Data\article.json" />
+    <EmbeddedResource Include="Data\cardItems.json" />
     <EmbeddedResource Include="Data\meals.json" />
     <EmbeddedResource Include="Data\navigation.json" />
+    <EmbeddedResource Include="Data\profile.json" />
+    <EmbeddedResource Include="Images\CaloriesEaten.svg" />
+    <EmbeddedResource Include="Images\HeartRate.svg" />
+    <EmbeddedResource Include="Images\SleepDuration.svg" />
+    <EmbeddedResource Include="Images\WaterConsumed.svg" />
     <EmbeddedResource Include="Resources\Fonts\Montserrat-Bold.ttf" />
     <EmbeddedResource Include="Resources\Fonts\Montserrat-Medium.ttf" />
     <EmbeddedResource Include="Resources\Fonts\Montserrat-Regular.ttf" />
@@ -30,17 +42,22 @@
   <ItemGroup>
     <PackageReference Include="Dynamsoft.CaptureVision.Xamarin.Forms" Version="1.0.1" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
-    <PackageReference Include="Syncfusion.Xamarin.Buttons" Version="20.3.0.61" />
-    <PackageReference Include="Syncfusion.Xamarin.Core" Version="20.3.0.61" />
-    <PackageReference Include="Syncfusion.Xamarin.SfComboBox" Version="20.3.0.61" />
-    <PackageReference Include="Syncfusion.Xamarin.SfGauge" Version="20.3.0.61" />
-    <PackageReference Include="Syncfusion.Xamarin.SfListView" Version="20.3.0.61" />
-    <PackageReference Include="Syncfusion.Xamarin.SfRating" Version="20.3.0.61" />
-    <PackageReference Include="Xamarin.CommunityToolkit" Version="2.0.5" />
-    <PackageReference Include="Xamarin.CommunityToolkit.Markup" Version="2.0.5" />
-    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2545" />  
-    <PackageReference Include="Xamarin.Essentials" Version="1.7.4" />  
-    <PackageReference Include="ZXing.Net.Mobile" Version="2.4.1" />  
+	<PackageReference Include="SkiaSharp.Extended" Version="1.60.0" />
+	<PackageReference Include="SkiaSharp.Svg" Version="1.60.0" />
+	<PackageReference Include="SkiaSharp.Views.Forms" Version="1.68.0" />
+	<PackageReference Include="sqlite-net-pcl" Version="1.9.141-beta" />
+	<PackageReference Include="SQLiteNetExtensions" Version="2.1.0" />
+	<PackageReference Include="Syncfusion.Xamarin.Buttons" Version="20.3.0.59" />
+    <PackageReference Include="Syncfusion.Xamarin.Core" Version="20.3.0.59" />
+    <PackageReference Include="Syncfusion.Xamarin.SfComboBox" Version="20.3.0.59" />
+    <PackageReference Include="Syncfusion.Xamarin.SfGauge" Version="20.3.0.59" />
+    <PackageReference Include="Syncfusion.Xamarin.SfListView" Version="20.3.0.59" />
+    <PackageReference Include="Syncfusion.Xamarin.SfRating" Version="20.3.0.59" />
+	<PackageReference Include="Xamarin.CommunityToolkit" Version="2.0.5" />
+	<PackageReference Include="Xamarin.CommunityToolkit.Markup" Version="2.0.5" />
+	<PackageReference Include="Xamarin.Forms" Version="5.0.0.2545" />  
+    <PackageReference Include="Xamarin.Essentials" Version="1.7.0" />
+	<PackageReference Include="ZXing.Net.Mobile" Version="2.4.1" />  
     <PackageReference Include="ZXing.Net.Mobile.Forms" Version="2.4.1" />
   </ItemGroup>
 
@@ -123,7 +140,13 @@
     <EmbeddedResource Update="Views\DailyCaloriesReportPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="Views\EditProfilePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Views\EmailEntry.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\HealthProfilePage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\LogInPage.xaml">
