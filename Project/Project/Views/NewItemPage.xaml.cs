@@ -21,7 +21,7 @@ namespace Project.Views
             BindingContext = new NewItemViewModel();
             zxing.OnScanResult += (result) => Device.BeginInvokeOnMainThread(async () => {
                 HttpClient client = new HttpClient();
-                HttpResponseMessage response = await client.GetAsync("https://api.barcodelookup.com/v3/products?barcode="+ result.Text + "&formatted=y&key=v95um7wenyhl6qakf38ov35paxpu1r");
+                HttpResponseMessage response = await client.GetAsync("https://api.barcodelookup.com/v3/products?barcode="+ result.Text + "&formatted=y&key=anlre5tcy8igemi8y703p3wrjm2qd6");
                 try
                 {
                     response.EnsureSuccessStatusCode();
